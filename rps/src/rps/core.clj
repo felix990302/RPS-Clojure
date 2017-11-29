@@ -1,7 +1,16 @@
 (ns rps.core
   (:gen-class))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
+(defn instream []
+  (defn helper []
+    (def curr (read))
+    (println "stop? (y)")
+    (if (= "y" (str curr)) '()
+    (cons curr (helper))))
+  (lazy-seq
+    (helper)))
+
+(defn -main [& args]
+  ;;(println "Welcome to my first Clojure Project!")
+  ;;(println "These are your args:" args)
+  (do (println (instream))))
